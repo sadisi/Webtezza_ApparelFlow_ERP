@@ -86,3 +86,17 @@ export function createAdminSupabaseClient() {
     },
   });
 }
+
+/**
+ * Helper to obtain the appropriate Supabase client for server-side database mutations.
+ * When SUPABASE_SERVICE_ROLE_KEY is configured, returns the service-role client to bypass RLS
+ * after server-side RBAC authorization has succeeded.
+ * Otherwise, falls back to the server client.
+ */
+export async function getMutationSupabaseClient() {
+  if (process.env['SUPABASE_SERVICE_ROLE_KEY']) {
+    return createAdminSupabaseClient();
+  }
+  return createServerSupabaseClient();
+}
+

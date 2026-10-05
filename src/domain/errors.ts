@@ -47,3 +47,10 @@ export class VerificationGateError extends DomainError {
     this.reasons = reasons;
   }
 }
+
+export class NotFoundError extends DomainError {
+  constructor(message: string) {
+    super(message);
+    this.name = 'NotFoundError';
+  }
+}
