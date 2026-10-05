@@ -7,7 +7,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { requireRole } from '@/src/auth/requireRole';
 import { AuthError } from '@/src/auth/roles';
-import { createServerSupabaseClient } from '@/src/db/supabaseClient';
+import { getReadSupabaseClient } from '@/src/db/supabaseClient';
 import { getSewingQueueService } from '@/src/services/sewingQueueService';
 import { SewingStatusFilter } from '@/src/db/queries/sewingQueue';
 import { DomainError, NotFoundError } from '@/src/domain';
@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
         ? rawFilter
         : 'ALL';
 
-    const supabase = await createServerSupabaseClient();
+    const supabase = await getReadSupabaseClient();
     const orders = await getSewingQueueService(
       { id: user.id, role: user.role },
       supabase,

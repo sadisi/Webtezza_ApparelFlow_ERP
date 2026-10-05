@@ -12,7 +12,7 @@ import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { requireRole } from '@/src/auth/requireRole';
-import { createServerSupabaseClient } from '@/src/db/supabaseClient';
+import { getReadSupabaseClient } from '@/src/db/supabaseClient';
 import { getCuttingOrderByIdService } from '@/src/services/cuttingOrderService';
 import { OrderStatusBadge } from '@/components/cutting/OrderStatusBadge';
 import { TrafficLightBadge } from '@/components/cutting/TrafficLightBadge';
@@ -31,7 +31,7 @@ export default async function CuttingOrderDetailPage({ params }: PageProps) {
     'sewing_supervisor',
   );
 
-  const supabase = await createServerSupabaseClient();
+  const supabase = await getReadSupabaseClient();
   let order;
   try {
     order = await getCuttingOrderByIdService(

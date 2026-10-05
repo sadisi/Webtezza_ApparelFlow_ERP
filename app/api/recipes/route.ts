@@ -7,7 +7,7 @@
 import { NextResponse } from 'next/server';
 import { requireRole } from '@/src/auth/requireRole';
 import { AuthError } from '@/src/auth/roles';
-import { createServerSupabaseClient } from '@/src/db/supabaseClient';
+import { getReadSupabaseClient } from '@/src/db/supabaseClient';
 import { getAllRecipes } from '@/src/db/queries/recipes';
 
 export async function GET() {
@@ -18,7 +18,7 @@ export async function GET() {
       'sewing_supervisor',
     );
 
-    const supabase = await createServerSupabaseClient();
+    const supabase = await getReadSupabaseClient();
     const recipes = await getAllRecipes(supabase);
 
     return NextResponse.json({ data: recipes }, { status: 200 });

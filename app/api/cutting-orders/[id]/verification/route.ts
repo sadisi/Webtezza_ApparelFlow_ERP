@@ -7,7 +7,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { requireRole } from '@/src/auth/requireRole';
 import { AuthError } from '@/src/auth/roles';
-import { createServerSupabaseClient } from '@/src/db/supabaseClient';
+import { getReadSupabaseClient } from '@/src/db/supabaseClient';
 import { getVerificationTerminalService } from '@/src/services/verificationService';
 import { DomainError, NotFoundError } from '@/src/domain';
 
@@ -23,7 +23,7 @@ export async function GET(
       'sewing_supervisor',
     );
 
-    const supabase = await createServerSupabaseClient();
+    const supabase = await getReadSupabaseClient();
     const result = await getVerificationTerminalService(
       id,
       { id: user.id, role: user.role },

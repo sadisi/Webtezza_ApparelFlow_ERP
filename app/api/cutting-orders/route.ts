@@ -10,7 +10,7 @@ import { ZodError } from 'zod';
 import { requireRole } from '@/src/auth/requireRole';
 import { AuthError } from '@/src/auth/roles';
 import {
-  createServerSupabaseClient,
+  getReadSupabaseClient,
   getMutationSupabaseClient,
 } from '@/src/db/supabaseClient';
 import {
@@ -53,7 +53,7 @@ export async function GET() {
     );
 
     // 2. Obtain server Supabase client
-    const supabase = await createServerSupabaseClient();
+    const supabase = await getReadSupabaseClient();
 
     // 3. Call Application Service
     const orders = await listCuttingOrdersService(

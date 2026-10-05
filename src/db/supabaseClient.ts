@@ -100,3 +100,16 @@ export async function getMutationSupabaseClient() {
   return createServerSupabaseClient();
 }
 
+/**
+ * Helper to obtain the appropriate Supabase client for server-side database reads.
+ * When SUPABASE_SERVICE_ROLE_KEY is configured, returns the service-role client to bypass RLS.
+ * Application-layer RBAC (requireRole) must always be called before using this client.
+ * Otherwise, falls back to the standard cookie-based server client.
+ */
+export async function getReadSupabaseClient() {
+  if (process.env['SUPABASE_SERVICE_ROLE_KEY']) {
+    return createAdminSupabaseClient();
+  }
+  return createServerSupabaseClient();
+}
+
