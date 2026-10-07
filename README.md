@@ -223,12 +223,19 @@ npm run lint
 
 ---
 
+## Deployed Application
+
+https://apparelflow-erp-beta.vercel.app/login
+
+---
+
 ## Demo Credentials
 
-The following demo user accounts are pre-configured for testing role workflows:
+These accounts are provided for evaluation of the ApparelFlow ERP assessment.
 
-| Role | Email | Password | Allowed Access |
-| :--- | :--- | :--- | :--- |
-| **Cutting Supervisor** | `supervisor@apparelflow.dev` | `Demo1234!` | Create Orders, Dashboard (`/cutting-orders`) |
-| **Cutting Verifier** | `verifier@apparelflow.dev` | `Demo1234!` | QC Terminal (`/verification`) |
-| **Sewing Supervisor** | `sewing@apparelflow.dev` | `Demo1234!` | Sewing Queue (`/sewing-queue`) |
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| Cutting Supervisor | supervisor@apparelflow.dev | Demo1234! |
+| Cutting Verifier | verifier@apparelflow.dev | Demo1234! |
+| Sewing Supervisor | sewing@apparelflow.dev | Demo1234! |
+
